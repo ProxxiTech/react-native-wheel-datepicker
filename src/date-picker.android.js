@@ -6,17 +6,24 @@ import Picker from './picker';
 
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
 
-const styles = StyleSheet.create({
-  picker: {
-    flex: 1,
-  },
-  row: {
-    flexDirection: 'row',
-  },
-});
+const MONTH_LABELS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 
 const stylesFromProps = props => ({
   itemSpace: props.itemSpace,
+  selectedTextColor: props.selectedTextColor,
   textColor: props.textColor,
   textSize: props.textSize,
   style: props.style,
@@ -24,11 +31,6 @@ const stylesFromProps = props => ({
 
 export default class DatePicker extends PureComponent {
   static propTypes = {
-    labelUnit: PropTypes.shape({
-      year: PropTypes.string,
-      month: PropTypes.string,
-      date: PropTypes.string,
-    }),
     order: PropTypes.string,
     date: PropTypes.instanceOf(Date).isRequired,
     maximumDate: PropTypes.instanceOf(Date),
@@ -36,20 +38,21 @@ export default class DatePicker extends PureComponent {
     mode: PropTypes.oneOf(['date', 'time', 'datetime']),
     onDateChange: PropTypes.func.isRequired,
     style: ViewPropTypes.style,
+    selectedTextColor: ColorPropType,
     textColor: ColorPropType,
     textSize: PropTypes.number,
     itemSpace: PropTypes.number,
   };
 
   static defaultProps = {
-    labelUnit: { year: '', month: '', date: '' },
-    order: 'D-M-Y',
+    order: 'M-D-Y',
     mode: 'date',
     maximumDate: moment().add(10, 'years').toDate(),
     minimumDate: moment().add(-10, 'years').toDate(),
     date: new Date(),
     style: null,
-    textColor: '#333',
+    selectedTextColor: '#333',
+    textColor: '#888',
     textSize: 26,
     itemSpace: 20,
   };
@@ -57,7 +60,7 @@ export default class DatePicker extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { date, minimumDate, maximumDate, labelUnit } = props;
+    const { date, minimumDate, maximumDate } = props;
 
     this.state = { date, monthRange: [], yearRange: [] };
 
@@ -74,13 +77,13 @@ export default class DatePicker extends PureComponent {
     const maxYear = maximumDate.getFullYear();
 
     for (let i = 1; i <= 12; i += 1) {
-      this.state.monthRange.push({ value: i, label: `${i}${labelUnit.month}` });
+      this.state.monthRange.push({ value: i, label: MONTH_LABELS[i-1] });
     }
 
-    this.state.yearRange.push({ value: minYear, label: `${minYear}${labelUnit.year}` });
+    this.state.yearRange.push({ value: minYear, label: `${minYear}` });
 
     for (let i = minYear + 1; i <= maxYear; i += 1) {
-      this.state.yearRange.push({ value: i, label: `${i}${labelUnit.year}` });
+      this.state.yearRange.push({ value: i, label: `${i}` });
     }
   }
 
@@ -134,7 +137,7 @@ export default class DatePicker extends PureComponent {
     const days = [];
 
     for (let i = 1; i <= dayNum; i += 1) {
-      days.push({ value: i, label: `${i}${this.props.labelUnit.date}` });
+      days.push({ value: i, label: `${i}` });
     }
 
     return days;
@@ -173,7 +176,7 @@ export default class DatePicker extends PureComponent {
           </View>
         );
         case 'M': return (
-          <View key='month' style={styles.picker}>
+          <View key='month' style={styles.monthPicker}>
             <Picker
               {...propsStyles}
               style={this.props.style}
@@ -296,3 +299,16 @@ export default class DatePicker extends PureComponent {
     return nextDate > this.props.maximumDate ? this.props.maximumDate : nextDate;
   }
 }
+
+const styles = StyleSheet.create({
+  monthPicker: {
+    flex: 2,
+  },
+  picker: {
+    flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
+    paddingHorizontal: 30,
+  },
+});

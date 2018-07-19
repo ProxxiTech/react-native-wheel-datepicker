@@ -1,27 +1,20 @@
 {
   "name": "react-native-wheel-datepicker",
-  "version": "2.2.3",
+  "version": "3.0.0",
   "description": "React native cross platform iOS-style picker and datepicker.",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pinguinjkeke/react-native-wheel-datepicker.git"
-  },
+  "private": true,
   "keywords": [
     "react-native",
     "datepicker",
     "picker",
     "wheel"
   ],
-  "author": "Alexander Avakov <yaavakov@gmail.com>",
+  "author": "Peter Machowski <peter@reliantid.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pinguinjkeke/react-native-wheel-datepicker/issues"
-  },
-  "homepage": "https://github.com/pinguinjkeke/react-native-wheel-datepicker#readme",
   "dependencies": {
     "moment": "^2.19.1"
   },

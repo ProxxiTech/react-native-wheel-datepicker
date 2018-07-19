@@ -5,4 +5,5 @@ screenshots
 .DS_Store
 .eslintrc
 .gitignore
+.sonarlint
 README.md

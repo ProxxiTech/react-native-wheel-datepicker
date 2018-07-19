@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { ColorPropType, StyleSheet, View, ViewPropTypes as RNViewPropTypes, Text } from 'react-native';
+import { ColorPropType, StyleSheet, View, ViewPropTypes as RNViewPropTypes, Text, TextPropTypes as RNTextPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 import WheelCurvedPicker from './WheelCurvedPicker';
 
 const ViewPropTypes = RNViewPropTypes || View.propTypes;
+const TextPropTypes = RNTextPropTypes || Text.propTypes;
 
 const PickerItem = WheelCurvedPicker.Item;
 
@@ -17,10 +18,11 @@ const styles = StyleSheet.create({
 
 export default class Picker extends Component {
   static propTypes = {
+    selectedTextColor: ColorPropType,
     textColor: ColorPropType,
     textSize: PropTypes.number,
     itemSpace: PropTypes.number,
-    itemStyle: ViewPropTypes.style,
+    itemStyle: TextPropTypes.style,
     onValueChange: PropTypes.func.isRequired,
     pickerData: PropTypes.array.isRequired,
     style: ViewPropTypes.style,
@@ -28,11 +30,10 @@ export default class Picker extends Component {
   };
 
   static defaultProps = {
+    selectedTextColor: '#888',
     textColor: '#333',
     textSize: 26,
     itemSpace: 20,
-    itemStyle: null,
-    style: null,
   };
 
   state = {

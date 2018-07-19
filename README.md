@@ -2,20 +2,16 @@
 
 A iOS style picker and datepicker components for ReactNative.
 
+- Fork by @lesliesam: [react-native-wheel-datepicker](https://github.com/pinguinjkeke/react-native-wheel-datepicker).
 - Original repository by @lesliesam: [react-native-wheel-picker](https://github.com/lesliesam/react-native-wheel-picker).
 - Fork by @wusuopu who added the real cross platform behavior and datepicker [react-native-wheel-picker](https://github.com/wusuopu/react-native-wheel-picker).
 
-This is the third fork of repository and its targeted to support and maintain current code. I asked github team to make it my own as is all pull requests goes directly to @lesliesam original repository but it seems to be no longer maintained.
-
 ## Introduction
-Cross platform Picker component for React-native.
+Cross platform Picker component for React-native designed to mimic iOS.
 
-Since picker is originally supported by iOS while Android only supports a ugly Spinner component. If you want to have the same user behaviour, you can use this.
+The android component is based on [wheel-picker](https://github.com/AigeStudio/WheelPicker) v1.0.3 BETA which runs super fast and smoothly. It also supports curved effect which make it exactly the same looking and feel as the iOS picker.
 
-The android component is based on [wheel-picker](https://github.com/AigeStudio/WheelPicker) which runs super fast and smoothly. It also supports curved effect which make it exactly the same looking and feel as the ios picker.
-
-![](screenshots/ios1.png)
-![](screenshots/ios2.png)
+![](screenshots/ios.png)
 
 ![](screenshots/android.png)
 
@@ -23,19 +19,11 @@ The android component is based on [wheel-picker](https://github.com/AigeStudio/W
 
 Run command
 
-For apps using RN 0.32 or higher, please run
-
 ```
-npm i react-native-wheel-datepicker --save
+yarn add react-native-wheel-datepicker
 ```
 
-For apps using RN 0.31 or less, please run
-
-```
-npm install --save --save-exact react-native-wheel-datepicker@1.9.0
-```
-
-Configration:
+Configuration:
 
 ```
 react-native link react-native-wheel-datepicker
@@ -50,9 +38,7 @@ if you need textColor functionality on IOS platform.
 
 Just install:
 ```
-npm i react-native-custom-datepicker-ios
-// or
-yarn add react-native-custom-datepicker-ios
+yarn add https://github.com/Reliantid/react-native-wheel-datepicker
 ```
 link dependencies:
 ```
