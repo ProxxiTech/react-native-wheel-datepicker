@@ -34,23 +34,24 @@ export default class Picker extends Component {
     textColor: '#333',
     textSize: 26,
     itemSpace: 20,
-  };
+  }
 
   state = {
     selectedValue: this.props.selectedValue,
-  };
+    pickerData: this.props.pickerData,
+  }
 
   handleChange = (selectedValue) => {
     this.setState({ selectedValue });
     this.props.onValueChange(selectedValue);
-  };
+  }
 
   componentWillReceiveProps({ selectedValue }) {
     this.setState({ selectedValue });
   }
 
   render() {
-    const { pickerData, style, ...props } = this.props;
+    const { style, ...props } = this.props;
 
     return (
       <WheelCurvedPicker
@@ -59,7 +60,7 @@ export default class Picker extends Component {
         selectedValue={this.state.selectedValue}
         onValueChange={this.handleChange}
       >
-        {pickerData.map((data, index) => (
+        {this.state.pickerData.map((data, index) => (
           <PickerItem
             key={index}
             value={typeof data.value !== 'undefined' ? data.value : data}
