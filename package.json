@@ -1,6 +1,6 @@
 {
   "name": "react-native-wheel-datepicker",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "React native cross platform iOS-style picker and datepicker.",
   "main": "src/index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "author": "Peter Machowski <peter@reliantid.com>",
   "license": "MIT",
   "dependencies": {
+    "@react-native-community/picker": "^1.6.1",
     "moment": "^2.19.1"
   },
   "devDependencies": {
