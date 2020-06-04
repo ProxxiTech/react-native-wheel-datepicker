@@ -1,16 +1,12 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  View,
-  ColorPropType,
-  requireNativeComponent,
-} from 'react-native';
+import { View, ColorPropType, requireNativeComponent } from 'react-native'
 
 const WheelCurvedPickerNativeInterface = {
   name: 'WheelCurvedPicker',
   propTypes: {
     ...View.propTypes,
-    data:PropTypes.array,
+    data: PropTypes.array,
     selectedTextColor: ColorPropType,
     textColor: ColorPropType,
     textSize: PropTypes.number,
@@ -18,13 +14,15 @@ const WheelCurvedPickerNativeInterface = {
     onValueChange: PropTypes.func,
     selectedValue: PropTypes.any,
     selectedIndex: PropTypes.number,
-  }
+  },
 }
 
-const WheelCurvedPickerNative = requireNativeComponent('WheelCurvedPicker', WheelCurvedPickerNativeInterface);
+const WheelCurvedPickerNative = requireNativeComponent(
+  'WheelCurvedPicker',
+  WheelCurvedPickerNativeInterface
+)
 
 class WheelCurvedPicker extends React.Component {
-
   static propTypes = {
     ...View.propTypes,
     data: PropTypes.array,
@@ -38,38 +36,38 @@ class WheelCurvedPicker extends React.Component {
   }
 
   static defaultProps = {
-    itemStyle: {color:"white", fontSize:26},
-    textColor: "gray",
-    selectedTextColor: "black",
+    itemStyle: { color: 'white', fontSize: 26 },
+    textColor: 'gray',
+    selectedTextColor: 'black',
     textSize: 26,
-    itemSpace: 20
+    itemSpace: 20,
   }
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = this._stateFromProps(props)
   }
 
-  componentWillReceiveProps (props) {
-    this.setState(this._stateFromProps(props));
+  componentWillReceiveProps(props) {
+    this.setState(this._stateFromProps(props))
   }
 
-  _stateFromProps (props) {
-    var selectedIndex = 0;
-    var items = [];
+  _stateFromProps(props) {
+    var selectedIndex = 0
+    var items = []
     React.Children.forEach(props.children, function (child, index) {
       if (child.props.value === props.selectedValue) {
-        selectedIndex = index;
+        selectedIndex = index
       }
-      items.push({value: child.props.value, label: child.props.label});
-    });
+      items.push({ value: child.props.value, label: child.props.label })
+    })
 
-    return {selectedIndex, items};
+    return { selectedIndex, items }
   }
 
   _onValueChange = (e) => {
     if (this.props.onValueChange) {
-      this.props.onValueChange(e.nativeEvent.data);
+      this.props.onValueChange(e.nativeEvent.data)
     }
   }
 
@@ -89,17 +87,17 @@ class WheelCurvedPicker extends React.Component {
 }
 
 class Item extends React.Component {
-  propTypes: {
-    value: React.PropTypes.any, // string or integer basically
-    label: React.PropTypes.string,
+  static propTypes = {
+    value: PropTypes.any, // string or integer basically
+    label: PropTypes.string,
   }
 
-  render () {
+  render() {
     // These items don't get rendered directly.
-    return null;
+    return null
   }
 }
 
-WheelCurvedPicker.Item = Item;
+WheelCurvedPicker.Item = Item
 
-module.exports = WheelCurvedPicker;
+module.exports = WheelCurvedPicker
