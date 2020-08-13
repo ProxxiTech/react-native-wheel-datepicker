@@ -1,18 +1,18 @@
-import React, { PureComponent } from 'react';
-import { DatePickerIOS } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import PropTypes from "prop-types";
 
 export default class DatePicker extends PureComponent {
   static propTypes = {
     date: PropTypes.instanceOf(Date).isRequired,
     maximumDate: PropTypes.instanceOf(Date),
     minimumDate: PropTypes.instanceOf(Date),
-    mode: PropTypes.oneOf(['date', 'time', 'datetime']),
+    mode: PropTypes.oneOf(["date", "time", "datetime"]),
     onDateChange: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    mode: 'date',
+    mode: "date",
     date: new Date(),
   };
 
@@ -20,7 +20,7 @@ export default class DatePicker extends PureComponent {
     date: null,
   };
 
-  onDateChange = (date) => {
+  onDateChange = (evemt, date) => {
     this.setState({ date });
     this.props.onDateChange(date);
   };
@@ -35,10 +35,16 @@ export default class DatePicker extends PureComponent {
 
   render() {
     return (
-      <DatePickerIOS
+      <DateTimePicker
         {...this.props}
-        onDateChange={this.onDateChange}
-        date={this.state.date}
+        {
+          // selectedTextColor is not supported but the RNDateTimePicker, if specified, use it as the textColor
+          ...!!this.props.selectedTextColor ?
+          { textColor: this.props.selectedTextColor } : {}
+        }
+
+        onChange={this.onDateChange}
+        value={this.state.date}
       />
     );
   }
