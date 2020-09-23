@@ -16,8 +16,8 @@
   "author": "Peter Machowski <peter@reliantid.com>",
   "license": "MIT",
   "dependencies": {
-    "@react-native-community/datetimepicker": "^2.6.0",
-    "@react-native-community/picker": "^1.6.1",
+    "@react-native-community/datetimepicker": "^3.0.2",
+    "@react-native-community/picker": "^1.8.0",
     "moment": "^2.19.1"
   },
   "devDependencies": {
