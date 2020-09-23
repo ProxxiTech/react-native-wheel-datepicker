@@ -36,13 +36,14 @@ export default class DatePicker extends PureComponent {
   render() {
     return (
       <DateTimePicker
+        display="spinner"
         {...this.props}
         {
           // selectedTextColor is not supported but the RNDateTimePicker, if specified, use it as the textColor
-          ...!!this.props.selectedTextColor ?
-          { textColor: this.props.selectedTextColor } : {}
+          ...(!!this.props.selectedTextColor
+            ? { textColor: this.props.selectedTextColor }
+            : {})
         }
-
         onChange={this.onDateChange}
         value={this.state.date}
       />
