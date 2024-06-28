@@ -1,6 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
+    def agpVersion = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION
+    if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
+        namespace "com.zyu"
+    }
+
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
     defaultConfig {
